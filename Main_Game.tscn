@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://2mv5chmafkrj"]
+
+[ext_resource type="PackedScene" uid="uid://diwbxsup6gdfy" path="res://main_character.tscn" id="1_ljyvl"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lxoxe"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ljyvl"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aw5v0"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_24er3"]
+
+[node name="Node" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 649.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ljyvl")]
+position = Vector2(576, 445)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Top Barrier" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_lxoxe")
+
+[node name="Left Barrier" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ljyvl")
+
+[node name="Right Barrier" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1152, 648)
+shape = SubResource("WorldBoundaryShape2D_aw5v0")
+
+[node name="Bottom Barrier" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1152, 648)
+shape = SubResource("WorldBoundaryShape2D_24er3")
