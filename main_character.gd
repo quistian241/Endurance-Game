@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
+var health = 1
 #const FRICTION = 30.0 ## friction was troublesome to add 
 var moveDirection = Vector2.ZERO
 
@@ -10,3 +11,9 @@ func _physics_process(delta):
 	moveDirection.normalized()
 	velocity = moveDirection * SPEED
 	move_and_slide()
+
+func take_damage():
+	health -= 1
+	
+	if health == 0:
+		queue_free()

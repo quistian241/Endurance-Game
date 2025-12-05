@@ -14,3 +14,16 @@ func _physics_process(delta):
 	if travelled_distance > MAX_FALL_DIST:
 		queue_free()
 	
+
+func _on_body_entered(body):
+	queue_free()
+	#if body.has_method("take_damage"):
+		#queue_free()
+		#body.take_damage()
+
+
+func _on_obstacle_hurt_box_body_entered(body: Node2D) -> void:
+	#pass # Replace with function body.
+	if body.has_method("take_damage"):
+		queue_free()
+		body.take_damage()
