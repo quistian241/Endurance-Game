@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-var health = 1
-#const FRICTION = 30.0 ## friction was troublesome to add 
+class_name Player
+
+signal health_depleted
+signal health_reduced
+const SPEED = 450.0
+const DAMAGE_RATE = 1
+const MAX_HEALTH = 5
+var health = 5 
 var moveDirection = Vector2.ZERO
 
 # Could do a WASD controls as well as follow the mouse movement controls
@@ -13,7 +18,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func take_damage():
-	health -= 1
+	health -= DAMAGE_RATE
+	health_reduced.emit()
 	
-	if health == 0:
-		queue_free()
+	if health <= 0:
+		health_depleted.emit()

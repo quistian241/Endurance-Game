@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Endurance Game"
-run/main_scene="uid://2mv5chmafkrj"
+run/main_scene="uid://du2vvsv16oaf0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -9,8 +9,13 @@ func spawn_obstacle():
 	new_obstacle.global_position = %PathFollow2D.global_position
 	add_child(new_obstacle)
 
+
 func _on_timer_timeout():
 	spawn_obstacle()
+	spawn_obstacle()
+	spawn_obstacle()
+	spawn_obstacle()
+
 
 func getTimeLabel(curTime: float):
 	var mins = int(curTime / 60)
@@ -22,7 +27,13 @@ func getTimeLabel(curTime: float):
 	else: 
 		return minTxt + ":0" + secTxt
 	#return ""
-	
+
+
 func _process(delta):
 	var curTime = clock.time_left
 	timerLabel.text = getTimeLabel(curTime)
+
+
+func health_depleted():
+	%GameOver.visible = true
+	get_tree().paused = true

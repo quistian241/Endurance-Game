@@ -1,7 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://2mv5chmafkrj"]
+[gd_scene load_steps=12 format=3 uid="uid://2mv5chmafkrj"]
 
 [ext_resource type="Script" uid="uid://diwnvnqkfegkn" path="res://endurance_game.gd" id="1_2cs6f"]
 [ext_resource type="PackedScene" uid="uid://diwbxsup6gdfy" path="res://main_character.tscn" id="1_q6w71"]
+[ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="2_2cs6f"]
+[ext_resource type="Script" uid="uid://bvbs3myeuqr10" path="res://health_bar.gd" id="2_q6w71"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1prgn"]
+bg_color = Color(0.905882, 0.0156863, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6w71"]
+bg_color = Color(0.188235, 0.596078, 0.160784, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lxoxe"]
 normal = Vector2(0, 1)
@@ -49,7 +65,8 @@ anchor_bottom = 1.0
 offset_left = -150.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_2cs6f")
+theme_override_font_sizes/font_size = 55
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -59,6 +76,26 @@ unique_name_in_owner = true
 wait_time = 600.0
 one_shot = true
 autostart = true
+
+[node name="Health Bar" type="ProgressBar" parent="Game Screen/TopUI/Panel" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = -10.0
+offset_right = 137.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1prgn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q6w71")
+value = 100.0
+show_percentage = false
+script = ExtResource("2_q6w71")
+player = NodePath("../../../../main_character")
 
 [node name="Game Boundaries" type="StaticBody2D" parent="Game Screen"]
 
@@ -87,7 +124,7 @@ position = Vector2(576, 445)
 
 [node name="MobTimer" type="Timer" parent="GameObstacles"]
 unique_name_in_owner = true
-wait_time = 0.5
+wait_time = 0.2
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="GameObstacles"]
@@ -122,7 +159,9 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("2_2cs6f")
+theme_override_font_sizes/font_size = 200
 text = "Game Over"
 
+[connection signal="health_depleted" from="main_character" to="." method="health_depleted"]
 [connection signal="timeout" from="GameObstacles/MobTimer" to="." method="_on_timer_timeout"]
