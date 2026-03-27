@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0p120c5q2ndq"]
+
+[ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="1_y26ei"]
+[ext_resource type="Script" uid="uid://0w0bntblahyr" path="res://game_over.gd" id="1_yxx3c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cs6f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epalt"]
+bg_color = Color(0.560955, 0.560955, 0.560955, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k73am"]
+bg_color = Color(0.303233, 0.303233, 0.303233, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3skjf"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="GameOver" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_yxx3c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.478431)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -431.5
+offset_top = -227.0
+offset_right = 431.5
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_font_sizes/font_size = 200
+text = "Game Over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.5
+offset_top = -17.0
+offset_right = 210.5
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Retry" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_font_sizes/font_size = 65
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2cs6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_epalt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k73am")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3skjf")
+text = "Retry
+"
+
+[node name="Main Menu" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_font_sizes/font_size = 65
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2cs6f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_epalt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k73am")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3skjf")
+text = "Main Menu
+"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
