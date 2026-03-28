@@ -6,6 +6,7 @@ func _ready() -> void:
 func unpause_game():
 	get_tree().paused = false
 
+
 func _on_retry_pressed() -> void:
 	unpause_game()
 	get_tree().reload_current_scene()

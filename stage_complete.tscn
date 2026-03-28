@@ -1,34 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0p120c5q2ndq"]
+[gd_scene load_steps=7 format=3 uid="uid://dx54tj0jp2kdd"]
 
-[ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="1_y26ei"]
-[ext_resource type="Script" uid="uid://0w0bntblahyr" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="1_8tra8"]
+[ext_resource type="Script" uid="uid://bknvdt4milhi0" path="res://stage_complete.gd" id="1_vlk3e"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cs6f"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vlk3e"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epalt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adn08"]
 bg_color = Color(0.560955, 0.560955, 0.560955, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k73am"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr8qa"]
 bg_color = Color(0.303233, 0.303233, 0.303233, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3skjf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22cym"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="StageComplete" type="CanvasLayer"]
 process_mode = 2
-script = ExtResource("1_yxx3c")
+script = ExtResource("1_vlk3e")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1151.0
@@ -48,9 +48,9 @@ offset_right = 431.5
 offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_fonts/font = ExtResource("1_8tra8")
 theme_override_font_sizes/font_size = 200
-text = "Game Over"
+text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -78,12 +78,12 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_fonts/font = ExtResource("1_8tra8")
 theme_override_font_sizes/font_size = 65
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2cs6f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_epalt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_k73am")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3skjf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vlk3e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adn08")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8qa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_22cym")
 text = "Retry
 "
 
@@ -96,12 +96,12 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_fonts/font = ExtResource("1_8tra8")
 theme_override_font_sizes/font_size = 65
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2cs6f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_epalt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_k73am")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3skjf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vlk3e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adn08")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8qa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_22cym")
 text = "Main Menu
 "
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://2mv5chmafkrj"]
+[gd_scene load_steps=14 format=3 uid="uid://2mv5chmafkrj"]
 
 [ext_resource type="Script" uid="uid://diwnvnqkfegkn" path="res://endurance_game.gd" id="1_2cs6f"]
 [ext_resource type="PackedScene" uid="uid://diwbxsup6gdfy" path="res://main_character.tscn" id="1_q6w71"]
 [ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="2_2cs6f"]
 [ext_resource type="Script" uid="uid://bvbs3myeuqr10" path="res://health_bar.gd" id="2_q6w71"]
 [ext_resource type="PackedScene" uid="uid://d0p120c5q2ndq" path="res://game_over.tscn" id="5_epalt"]
+[ext_resource type="PackedScene" uid="uid://dx54tj0jp2kdd" path="res://stage_complete.tscn" id="6_k73am"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1prgn"]
 bg_color = Color(0.905882, 0.0156863, 0, 1)
@@ -74,7 +75,7 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="Game Screen/TopUI/Panel"]
 unique_name_in_owner = true
-wait_time = 600.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 
@@ -140,6 +141,12 @@ rotation = 0.203798
 
 [node name="GameOver" parent="." instance=ExtResource("5_epalt")]
 unique_name_in_owner = true
+visible = false
 
+[node name="StageComplete" parent="." instance=ExtResource("6_k73am")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="timeout" from="Game Screen/TopUI/Panel/Timer" to="." method="_on_timer_win_game"]
 [connection signal="health_depleted" from="main_character" to="." method="health_depleted"]
 [connection signal="timeout" from="GameObstacles/MobTimer" to="." method="_on_timer_timeout"]

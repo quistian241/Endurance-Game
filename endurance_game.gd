@@ -26,7 +26,6 @@ func getTimeLabel(curTime: float):
 		return minTxt + ":" + secTxt
 	else: 
 		return minTxt + ":0" + secTxt
-	#return ""
 
 
 func _process(delta):
@@ -36,4 +35,9 @@ func _process(delta):
 
 func health_depleted():
 	%GameOver.visible = true
+	get_tree().paused = true
+
+
+func _on_timer_win_game() -> void:
+	%StageComplete.visible = true
 	get_tree().paused = true
