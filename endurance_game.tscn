@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://2mv5chmafkrj"]
+[gd_scene load_steps=16 format=3 uid="uid://2mv5chmafkrj"]
 
 [ext_resource type="Script" uid="uid://diwnvnqkfegkn" path="res://endurance_game.gd" id="1_2cs6f"]
 [ext_resource type="PackedScene" uid="uid://diwbxsup6gdfy" path="res://main_character.tscn" id="1_q6w71"]
 [ext_resource type="FontFile" uid="uid://hwdtr4lmtyxk" path="res://Game Fonts/GrapeSoda.ttf" id="2_2cs6f"]
+[ext_resource type="PackedScene" uid="uid://dj84nbm4tuj1" path="res://background.tscn" id="2_3skjf"]
 [ext_resource type="Script" uid="uid://bvbs3myeuqr10" path="res://health_bar.gd" id="2_q6w71"]
 [ext_resource type="PackedScene" uid="uid://d0p120c5q2ndq" path="res://game_over.tscn" id="5_epalt"]
 [ext_resource type="PackedScene" uid="uid://dx54tj0jp2kdd" path="res://stage_complete.tscn" id="6_k73am"]
+[ext_resource type="PackedScene" uid="uid://gh78l1qwg25a" path="res://wave_manager.tscn" id="6_ov86n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1prgn"]
 bg_color = Color(0.905882, 0.0156863, 0, 1)
@@ -38,14 +40,22 @@ _data = {
 }
 point_count = 2
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("wave_manager")]
 y_sort_enabled = true
 script = ExtResource("1_2cs6f")
+wave_manager = NodePath("WaveManager")
+fall_velocity = Array[float]([500.0, 375.0, 250.0])
+spawn_interval = Array[float]([0.35, 0.25, 0.3])
+spawn_density = Array[int]([3, 4, 6])
+wave_interval = 30.0
 
 [node name="Game Screen" type="ColorRect" parent="."]
 offset_right = 1153.0
 offset_bottom = 648.0
 color = Color(0.113725, 0.160784, 0.317647, 1)
+
+[node name="Background" parent="Game Screen" instance=ExtResource("2_3skjf")]
+layout_mode = 1
 
 [node name="TopUI" type="CanvasLayer" parent="Game Screen"]
 layer = 128
@@ -57,7 +67,7 @@ anchor_right = 1.0
 offset_bottom = 56.0
 grow_horizontal = 2
 
-[node name="GameTimer" type="Label" parent="Game Screen/TopUI/Panel"]
+[node name="TimerLabel" type="Label" parent="Game Screen/TopUI/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 11
@@ -75,7 +85,7 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="Game Screen/TopUI/Panel"]
 unique_name_in_owner = true
-wait_time = 60.0
+wait_time = 90.0
 one_shot = true
 autostart = true
 
@@ -122,14 +132,16 @@ position_smoothing_enabled = true
 [node name="main_character" parent="." instance=ExtResource("1_q6w71")]
 position = Vector2(576, 445)
 
+[node name="WaveManager" parent="." instance=ExtResource("6_ov86n")]
+
 [node name="GameObstacles" type="Node" parent="."]
 
 [node name="MobTimer" type="Timer" parent="GameObstacles"]
-unique_name_in_owner = true
 wait_time = 0.2
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="GameObstacles"]
+visible = false
 position = Vector2(22.2385, 208.839)
 scale = Vector2(0.980126, -0.00403226)
 curve = SubResource("Curve2D_aw5v0")
@@ -149,4 +161,3 @@ visible = false
 
 [connection signal="timeout" from="Game Screen/TopUI/Panel/Timer" to="." method="_on_timer_win_game"]
 [connection signal="health_depleted" from="main_character" to="." method="health_depleted"]
-[connection signal="timeout" from="GameObstacles/MobTimer" to="." method="_on_timer_timeout"]

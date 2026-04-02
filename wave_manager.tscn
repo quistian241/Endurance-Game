@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://gh78l1qwg25a"]
+
+[ext_resource type="Script" uid="uid://6yx8ytmqjjpc" path="res://wave_manager.gd" id="1_050wf"]
+
+[sub_resource type="Curve2D" id="Curve2D_244l3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -40, 61712, 0, 0, 0, 0, 1160, 61960)
+}
+point_count = 2
+
+[node name="WaveManager" type="Node"]
+script = ExtResource("1_050wf")
+
+[node name="MobTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(22.2385, 208.839)
+scale = Vector2(0.980126, -0.00403226)
+curve = SubResource("Curve2D_244l3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-40, 61712)
+rotation = 0.203798
+
+[node name="WaveChanger" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="WaveChanger" to="." method="_on_wave_changer_timeout"]

@@ -11,7 +11,7 @@ var health = 5
 var moveDirection = Vector2.ZERO
 
 # Could do a WASD controls as well as follow the mouse movement controls
-func _physics_process(delta):
+func _physics_process(_delta):
 	moveDirection = Input.get_vector("left", "right", "up", "down")
 	moveDirection.normalized()
 	velocity = moveDirection * SPEED
